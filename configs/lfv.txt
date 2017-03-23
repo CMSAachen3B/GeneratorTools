@@ -1,0 +1,8 @@
+import new_mod
+define lep+ = ta+ mu+ e+
+define lep- = ta- mu- e-
+generate z > lep+ lep-
+output $MADGRAPH_DIR/zTOlep+lep- 
+launch $MADGRAPH_DIR/zTOlep+lep-
+0
+0
