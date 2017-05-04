@@ -1,3 +1,0 @@
-#!/bin/bash
-
-$MADGRAPH_DIR/bin/mg5_aMC $MADGRAPH_DIR/../MatrixElementTools/configs/lfv.txt

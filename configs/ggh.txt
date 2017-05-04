@@ -1,16 +1,16 @@
 import HC_UFO
 define j = g u c d s b u~ c~ d~ s~ b~
-generate g g > X0
+generate j j > X0
 
-output standalone $MADGRAPH_DIR/gg_X0
+output standalone $MADGRAPH_DIR/JJ_X0
 
-generate g g > X0 j
+generate j j > X0 j
 
-output standalone $MADGRAPH_DIR/gg_X0J
+output standalone $MADGRAPH_DIR/JJ_X0J
 
-generate g g > X0 j j
+generate j j > X0 j j
 
-output standalone $MADGRAPH_DIR/gg_X0JJ
+output standalone $MADGRAPH_DIR/JJ_X0JJ
 
 
 quit
