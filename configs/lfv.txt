@@ -1,4 +1,4 @@
-import new_mod
+import lfv
 define lep+ = ta+ mu+ e+
 define lep- = ta- mu- e-
 generate z > lep+ lep-
