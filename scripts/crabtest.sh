@@ -43,7 +43,7 @@ sed -i -e "s/5000/2/g" Configuration/GenProduction/python/getfragment.py
 
 scram b
 cd ../../
-cmsDriver.py Configuration/GenProduction/python/getfragment.py --fileout file:LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n $2 || exit $? ; 
+cmsDriver.py Configuration/GenProduction/python/getfragment.py --fileout file:LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 2 || exit $? ; 
 #echo "DRIVER LHE DONE"
 cmsRun -j LHE.xml -p LHE.py || exit $? ; 
 #echo "RUN LHE DONE"
