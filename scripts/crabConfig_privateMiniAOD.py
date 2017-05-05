@@ -7,12 +7,12 @@ from httplib import HTTPException
 from CRABAPI.RawCommand import crabCommand
 from CRABClient.ClientExceptions import ClientException
 from multiprocessing import Process
-from Kappa.Skimming.registerDatasetHelper import get_sample_by_nick
-from Kappa.Skimming.datasetsHelper2015 import isData
+#from Kappa.Skimming.registerDatasetHelper import get_sample_by_nick
+#from Kappa.Skimming.datasetsHelper2015 import isData
 import sys
 from glob import glob
 import os, shutil
-from Kappa.Skimming.tools import read_grid_control_includes
+#from Kappa.Skimming.tools import read_grid_control_includes
 import datetime
 today=datetime.date.today().strftime("%Y-%m-%d")
 date = today # feel free to change
@@ -26,7 +26,7 @@ def submit(config):
 		print "Failed submitting task: %s" % (cle)
 
 def crab_command(command):
-	for dir in glob('/net/scratch_cms/institut_3b/%s/kappa/crab_kappa_skim-%s/*'%(getUsernameFromSiteDB(), date)):
+	for dir in glob('/net/scratch_cms3b/%s/kappa/crab_kappa_skim-%s/*'%(getUsernameFromSiteDB(), date)):
 		try:
 			crabCommand(command, dir = dir)
 		except HTTPException as hte:
@@ -54,7 +54,7 @@ def submission():
 	##-- Your name of the crab project
 	config.General.requestName = 'KAPPA_FROM_AOD_SUSYGluGlu_Sync2015'
 	#config.General.workArea = 'crab_projects'
-	config.General.workArea = '/net/scratch_cms/institut_3b/%s/kappa/crab_kappa_skim-%s'%(getUsernameFromSiteDB(), date)
+	config.General.workArea = '/net/scratch_cms3b/%s/kappa/crab_kappa_skim-%s'%(getUsernameFromSiteDB(), date)
 
 	##-- Transfer root files as well as log files "cmsRun -j FrameworkJobReport.xml" (log file = FrameworkJobReport.xml)
 	check_path(config.General.workArea)	
@@ -67,8 +67,8 @@ def submission():
 	##-- the scripts (Analysis means with EDM input) which are executed. psetName is the cmsRun config and scriptExe is a shell config which should include "cmsRun -j FrameworkJobReport.xml -p PSet.py" (PSet.py is the renamed config.JobType.psetName)
 	config.JobType.pluginName = 'Analysis'
 	config.JobType.sendPythonFolder = True
-	config.JobType.psetName = 'AODtoMiniAOD_cfg.py'
-	config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
+	config.JobType.psetName = 'LHE.py'
+	config.JobType.scriptExe = 'crabtest.sh'
 	#config.JobType.maxJobRuntimeMin = 2750
 	#config.JobType.maxMemoryMB = 6000
 
