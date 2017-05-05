@@ -65,7 +65,8 @@ def submission():
 	config.User.voGroup = 'dcms'
 
 	##-- the scripts (Analysis means with EDM input) which are executed. psetName is the cmsRun config and scriptExe is a shell config which should include "cmsRun -j FrameworkJobReport.xml -p PSet.py" (PSet.py is the renamed config.JobType.psetName)
-	config.JobType.pluginName = 'Analysis'
+	#config.JobType.pluginName = 'Analysis'
+        config.JobType.pluginName = 'PrivateMC'
 	config.JobType.sendPythonFolder = True
 	config.JobType.psetName = 'LHE.py'
 	config.JobType.scriptExe = 'crabtest.sh'
@@ -78,13 +79,14 @@ def submission():
 
 	##-- The dataset you want to process:
 
-	config.Data.inputDataset = '/.automount/home/home__home2/institut_3b/croote/Documents/analysis/CMSSW_7_1_20_patch2/src/GeneratorTools/data/ppTOzTOlep+lep-lfv_tarball.tar.xz'
+	#config.Data.inputDataset = '/.automount/home/home__home2/institut_3b/croote/Documents/analysis/CMSSW_7_1_20_patch2/src/GeneratorTools/data/ppTOzTOlep+lep-lfv_tarball.tar.xz'
 	#'/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIIFall15DR76-PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext1-v1/AODSIM'
 	config.Data.inputDBS = 'global'
-	config.Data.splitting = 'FileBased'
+	#config.Data.splitting = 'FileBased'
+        config.Data.splitting = 'EventBased'
 	config.Data.unitsPerJob = 1
 	##-- If you want to run test jobs set totalUnits to a small number and publication to false
-	#config.Data.totalUnits = 10
+	config.Data.totalUnits = 10
 	config.Data.publication = False
 	
 	##-- the output strorage element
