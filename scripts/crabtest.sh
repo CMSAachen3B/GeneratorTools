@@ -4,6 +4,10 @@
 #echo "desired number of events:"
 #echo "2"
 
+cat PSet.py
+
+touch test.root
+
 #source /cvmfs/cms.cern.ch/cmsset_default.sh
 #export SCRAM_ARCH=slc6_amd64_gcc481
 #if [ -r CMSSW_7_1_20_patch2/src ] ; then 
@@ -14,7 +18,7 @@
 #cd CMSSW_7_1_20_patch2/src
 #eval `scram runtime -sh`
 
-export X509_USER_PROXY=$HOME/.globus/x509up
+#export X509_USER_PROXY=$HOME/.globus/x509up
 #[ -s Configuration/GenProduction/python/getfragment.py ] || exit $?;
 
 #if [ -e Configuration/GenProduction/python/getfragment.py ]; then
