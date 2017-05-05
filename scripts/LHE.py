@@ -3,6 +3,9 @@
 # Revision: 1.19 
 # Source: /local/reps/CMSSW/CMSSW/Configuration/Applications/python/ConfigBuilder.py,v 
 # with command line options: Configuration/GenProduction/python/getfragment.py --fileout file:LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 2
+
+print "LHE OPEN"
+
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process('LHE')

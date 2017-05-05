@@ -4,6 +4,8 @@
 #echo "desired number of events:"
 #echo "2"
 
+echo "script open"
+
 cat PSet.py
 
 touch test.root
