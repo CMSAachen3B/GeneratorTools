@@ -4,18 +4,18 @@
 #echo "desired number of events:"
 #echo "2"
 
-source /cvmfs/cms.cern.ch/cmsset_default.sh
-export SCRAM_ARCH=slc6_amd64_gcc481
-if [ -r CMSSW_7_1_20_patch2/src ] ; then 
- echo release CMSSW_7_1_20_patch2 already exists
-else
-scram p CMSSW CMSSW_7_1_20_patch2
-fi
-cd CMSSW_7_1_20_patch2/src
-eval `scram runtime -sh`
+#source /cvmfs/cms.cern.ch/cmsset_default.sh
+#export SCRAM_ARCH=slc6_amd64_gcc481
+#if [ -r CMSSW_7_1_20_patch2/src ] ; then 
+# echo release CMSSW_7_1_20_patch2 already exists
+#else
+#scram p CMSSW CMSSW_7_1_20_patch2
+#fi
+#cd CMSSW_7_1_20_patch2/src
+#eval `scram runtime -sh`
 
 export X509_USER_PROXY=$HOME/.globus/x509up
-[ -s Configuration/GenProduction/python/getfragment.py ] || exit $?;
+#[ -s Configuration/GenProduction/python/getfragment.py ] || exit $?;
 
 #if [ -e Configuration/GenProduction/python/getfragment.py ]; then
 #  echo "File Configuration/GenProduction/python/getfragment.py already exists!"
@@ -23,11 +23,11 @@ export X509_USER_PROXY=$HOME/.globus/x509up
 #  rm -r Configuration/GenProduction/python/getfragment.py
 #fi
 
-curl -s --insecure https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_fragment/SUS-RunIIWinter15wmLHE-00098 --retry 2 --create-dirs -o Configuration/GenProduction/python/getfragment.py 
-[ -s Configuration/GenProduction/python/getfragment.py ] || exit $?;
+#curl -s --insecure https://cms-pdmv.cern.ch/mcm/public/restapi/requests/get_fragment/SUS-RunIIWinter15wmLHE-00098 --retry 2 --create-dirs -o Configuration/GenProduction/python/getfragment.py 
+#[ -s Configuration/GenProduction/python/getfragment.py ] || exit $?;
 
-sed -i -e "s@/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.2.2/DYJets_HT_LO_MLM/DYJets_HT-incl/V1/DYJets_HT-incl_tarball.tar.xz@/afs/cern.ch/user/c/croote/analysis/ppTOzTOlep+lep-lfv_tarball.tar.xz@g" Configuration/GenProduction/python/getfragment.py
-sed -i -e "s/5000/2/g" Configuration/GenProduction/python/getfragment.py
+#sed -i -e "s@/cvmfs/cms.cern.ch/phys_generator/gridpacks/slc6_amd64_gcc481/13TeV/madgraph/V5_2.2.2/DYJets_HT_LO_MLM/DYJets_HT-incl/V1/DYJets_HT-incl_tarball.tar.xz@/afs/cern.ch/user/c/croote/analysis/ppTOzTOlep+lep-lfv_tarball.tar.xz@g" Configuration/GenProduction/python/getfragment.py
+#sed -i -e "s/5000/2/g" Configuration/GenProduction/python/getfragment.py
 
 #echo "import FWCore.ParameterSet.Config as cms" >> Configuration/GenProduction/python/getfragment.py
 #echo " " >> Configuration/GenProduction/python/getfragment.py
@@ -41,11 +41,12 @@ sed -i -e "s/5000/2/g" Configuration/GenProduction/python/getfragment.py
 #echo "    scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')" >> Configuration/GenProduction/python/getfragment.py
 #echo ")" >> Configuration/GenProduction/python/getfragment.py
 
-scram b
-cd ../../
-cmsDriver.py Configuration/GenProduction/python/getfragment.py --fileout file:LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 2 || exit $? ; 
+#scram b
+#cd ../../
+#cmsDriver.py Configuration/GenProduction/python/getfragment.py --fileout file:LHE.root --mc --eventcontent LHE --datatier LHE --conditions MCRUN2_71_V1::All --step LHE --python_filename LHE.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 2 || exit $? ; 
 #echo "DRIVER LHE DONE"
-cmsRun -j LHE.xml -p LHE.py || exit $? ; 
+#cmsRun -j LHE.xml -p LHE.py || exit $? ; 
+cmsRun -j FrameworkJobReport.xml -p PSet.py
 #echo "RUN LHE DONE"
 #echo 2 events were ran 
 #grep "TotalEvents" LHE.xml 
