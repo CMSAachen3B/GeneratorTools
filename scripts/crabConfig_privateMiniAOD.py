@@ -78,7 +78,7 @@ def submission():
 
 	##-- The dataset you want to process:
 
-	config.Data.inputDataset = '/SUSYGluGluToHToTauTau_M-160_TuneCUETP8M1_13TeV-pythia8/RunIIFall15DR76-PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1/AODSIM'
+	config.Data.inputDataset = '/.automount/home/home__home2/institut_3b/croote/Documents/analysis/CMSSW_7_1_20_patch2/src/GeneratorTools/data/ppTOzTOlep+lep-lfv_tarball.tar.xz'
 	#'/DYJetsToLL_M-50_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIIFall15DR76-PU25nsData2015v1_76X_mcRun2_asymptotic_v12_ext1-v1/AODSIM'
 	config.Data.inputDBS = 'global'
 	config.Data.splitting = 'FileBased'
