@@ -2,7 +2,7 @@ from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 config = config()
 
 config.General.requestName = 'tutorial_May2015_MC_generation'
-config.General.workArea = '/home/home2/institut_3b/croote/Documents/analysis/CMSSW_7_1_20_patch2/src/GeneratorTools/scripts/crab_projects'
+config.General.workArea = '/net/scratch_cms3b/crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = True
 
