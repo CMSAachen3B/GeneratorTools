@@ -1,7 +1,7 @@
 from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 config = config()
 
-config.General.requestName = 'tutorial_debug_MC_generation'
+config.General.requestName = 'tutorial_May2015_MC_generation_2'
 config.General.workArea = '/net/scratch_cms3b/crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = True
@@ -11,7 +11,7 @@ config.User.voGroup = 'dcms'
 config.JobType.pluginName = 'PrivateMC'
 config.JobType.psetName = 'LHE.py'
 #config.JobType.allowUndistributedCMSSW = True
-config.JobType.scriptExe = 'crabtest.sh'
+config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
 config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'
@@ -21,6 +21,6 @@ NJOBS = 10  # This is not a configuration parameter, but an auxiliary variable t
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.outLFNDirBase = '/store/user/%s/' % (getUsernameFromSiteDB())
 config.Data.publication = False
-config.Data.outputDatasetTag = 'CRAB3_tutorial_May2015_MC_analysis'
+config.Data.outputDatasetTag = 'CRAB3_tutorial_May2015_MC_analysis_2'
 
 config.Site.storageSite = "T2_DE_DESY"

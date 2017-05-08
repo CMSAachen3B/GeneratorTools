@@ -1,7 +1,7 @@
 from CRABClient.UserUtilities import config, getUsernameFromSiteDB
 config = config()
 
-config.General.requestName = 'tutorial_debug_MC_generation'
+config.General.requestName = 'tutorial_May2015_MC_generation'
 config.General.workArea = '/net/scratch_cms3b/crab_projects'
 config.General.transferOutputs = True
 config.General.transferLogs = True
@@ -11,7 +11,8 @@ config.User.voGroup = 'dcms'
 config.JobType.pluginName = 'PrivateMC'
 config.JobType.psetName = 'LHE.py'
 #config.JobType.allowUndistributedCMSSW = True
-config.JobType.scriptExe = 'crabtest.sh'
+config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
+config.JobType.inputFiles = ['file:../data/ppTOzTOlep+lep-lfv_tarball.tar.xz']
 config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'
