@@ -9,6 +9,7 @@ config.General.transferLogs = True
 config.User.voGroup = 'dcms'
 
 config.JobType.pluginName = 'PrivateMC'
+config.JobType.inputFiles = ['/.automount/home/home__home2/institut_3b/croote/Documents/analysis/CMSSW_7_1_20_patch2/src/CMSAachen3B/GeneratorTools/data/ppTOzTOlep+lep-lfv_tarball.tar.xz']
 config.JobType.psetName = 'LHE.py'
 #config.JobType.allowUndistributedCMSSW = True
 config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
