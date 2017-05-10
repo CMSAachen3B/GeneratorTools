@@ -4,6 +4,12 @@ cat PSet.py
 echo "================= ls command ================="
 ls
 
+echo "================= ENV COMMAND ================="
+env 
+
+echo "================= SED REPLACE ================="
+sed -i -e "s@#GRIDPACK#@$CMSSW_RELEASE_BASE/src/CMSAachen3B/GeneratorTools/data/ppTOzTOlep+lep-lfv_tarball.tar.xz@g" PSet.py
+
 echo "================= CMSRUN starting ===================="
 cmsRun -j FrameworkJobReport.xml -p PSet.py
 
