@@ -63,7 +63,7 @@ process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh'),
     numberOfParameters = cms.uint32(1),
-    args = cms.vstring('ppTOzTOleplfv_tarball.tar.xz')
+    args = cms.vstring('$CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ppTOzTOleplfv_tarball.tar.xz')
 )
 
 
