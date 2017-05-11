@@ -12,10 +12,10 @@ config.User.voGroup = 'dcms'
 config.JobType.pluginName = 'PrivateMC'
 #config.JobType.inputFiles = ['run_generic_tarball_cvmfs.sh','ppTOzTOleplfv_tarball.tgz']
 config.JobType.psetName = 'pythonLHEGEN_cfg.py'
-config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh', 'gridpack.tgz']s
+config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh', 'gridpack.tgz']
 #config.JobType.allowUndistributedCMSSW = True
 #33333333config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
-config.JobType.outputFiles = ['LHETuple.root']
+#config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'
 config.Data.splitting = 'EventBased'

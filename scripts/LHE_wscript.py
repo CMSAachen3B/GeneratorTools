@@ -63,11 +63,7 @@ process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh'),
     numberOfParameters = cms.uint32(1),
-<<<<<<< Updated upstream
-    args = cms.vstring('#GRIDPACK#')
-=======
     args = cms.vstring('#GRIDPACKLOCATION#')
->>>>>>> Stashed changes
 )
 
 

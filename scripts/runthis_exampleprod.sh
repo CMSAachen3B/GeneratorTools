@@ -8,7 +8,8 @@ export WORKDIR=`pwd`
 
 # Define gridpack location, warning if you are using crab, requires global accessible gridpack
 # If running locally you can also set a local gridpack location
-export GRIDPACKLOC=$WORKDIR/ppTOzTOleplfv_tarball.tar.xz
+export GRIDPACKLOC='https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz'
+#$WORKDIR/ppTOzTOleplfv_tarball.tar.xz'
  #export GRIDPACKLOC=/afs/cern.ch/work/m/mharrend/public/ttHtranche3/TTTo2L2Nu_hvq_ttHtranche3.tgz
 
 # Use crab for grid submitting, adjust crabconfig.py accordingly beforehand
@@ -46,7 +47,7 @@ cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/r
 
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
-sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/LHE.py > ./pythonLHEGEN_cfg_eventsInserted.py
+sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/LHE_wscript.py > ./pythonLHEGEN_cfg_eventsInserted.py
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"
@@ -54,7 +55,7 @@ if [ $USECRAB = "True" ]; then
         echo "Copy gridpack for production to workdir, so that crab can transfer it also"
         cp $GRIDPACKLOC gridpack.tgz
 	echo "Add gridpack location to python config and copy cmssw python config to workdir"
-	sed -e "s~#GRIDPACKLOCATION#~gridpack.tgz~g" ./pythonLHEGEN_cfg_eventsInserted.py > ./pythonLHEGEN_cfg.py
+	sed -e "s~#GRIDPACKLOCATION#~../gridpack.tgz~g" ./pythonLHEGEN_cfg_eventsInserted.py > ./pythonLHEGEN_cfg.py
 
 	echo "Scram b and start of LHEGEN production"
 	scram b -j 4
@@ -65,7 +66,7 @@ if [ $USECRAB = "True" ]; then
 	echo "Change number of events in crab config to"
 	echo $NUMBEREVENTS
 	echo " and copy crabconfig.py to workdir"
-	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3.py > ./crabconfig_eventsInserted.py
+	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3_wscript.py > ./crabconfig_eventsInserted.py
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
