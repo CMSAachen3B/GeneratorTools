@@ -15,6 +15,7 @@ config.JobType.psetName = 'pythonLHEGEN_cfg.py'
 config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh', 'gridpack.tgz']
 #config.JobType.allowUndistributedCMSSW = True
 config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD.sh'
+#config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD_GEN.sh'
 #config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'

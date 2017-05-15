@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define number of events
-export NUMBEREVENTS=1000
+export NUMBEREVENTS=100000
 
 # Define workdir
 export WORKDIR=`pwd`
@@ -50,7 +50,7 @@ cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/r
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/LHE_wscript.py > ./pythonLHEGEN_cfg_eventsInserted.py
-sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
+#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"
