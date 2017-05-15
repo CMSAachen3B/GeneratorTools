@@ -1,4 +1,5 @@
 from WMCore.Configuration import Configuration
+from CRABClient.UserUtilities import getUsernameFromSiteDB
 config = Configuration()
 
 config.section_("General")
@@ -16,14 +17,14 @@ config.section_("Data")
 config.Data.outputPrimaryDataset = 'privateMCProductionLHEGEN'
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = 1200
-config.Data.totalUnits = #NUMBEREVENTS#
+config.Data.totalUnits = 2
 config.Data.publication = True
 config.Data.outputDatasetTag = 'eventLHEGEN'
 #config.Data.outLFNDirBase = '/store/group/phys_higgs'
 config.Data.outLFNDirBase = '/store/user/%s/' % (getUsernameFromSiteDB())
 
 config.section_("Site")
-#config.Site.storageSite = 'T2_DE_DESY'
+config.Site.storageSite = 'T2_DE_DESY'
 #config.Site.storageSite = 'T2_CN_Beijing'
 config.Site.whitelist = ['T2_*']
 

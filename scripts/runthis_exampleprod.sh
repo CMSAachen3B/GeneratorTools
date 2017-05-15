@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define number of events
-export NUMBEREVENTS=2
+export NUMBEREVENTS=1000
 
 # Define workdir
 export WORKDIR=`pwd`
@@ -9,7 +9,7 @@ export WORKDIR=`pwd`
 # Define gridpack location, warning if you are using crab, requires global accessible gridpack
 # If running locally you can also set a local gridpack location
 #export GRIDPACKLOC='https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz'
-export GRIDPACKLOC=$WORKDIR/ppTOzTOleplfv_tarball.tar.xz
+export GRIDPACKLOC=$WORKDIR/ppTOzTOlep+lep-lfv_new_tarball.tar.xz
 #wget https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz
 #mv ppTOzTOlep+lep-lfv_tarball.tar.xz gridpack.tgz
  #export GRIDPACKLOC=/afs/cern.ch/work/m/mharrend/public/ttHtranche3/TTTo2L2Nu_hvq_ttHtranche3.tgz
@@ -50,6 +50,7 @@ cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/r
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/LHE_wscript.py > ./pythonLHEGEN_cfg_eventsInserted.py
+sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"

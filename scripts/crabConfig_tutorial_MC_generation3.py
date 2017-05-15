@@ -9,11 +9,11 @@ config.General.transferLogs = True
 config.User.voGroup = 'dcms'
 
 config.JobType.pluginName = 'PrivateMC'
-#config.JobType.inputFiles = ['run_generic_tarball_cvmfs.sh','ppTOzTOleplfv_tarball.tgz']
+config.JobType.inputFiles = ['run_generic_tarball_cvmfs.sh','ppTOzTOleplfv_tarball.tar.xz']
 config.JobType.psetName = 'LHE.py'
 #config.JobType.allowUndistributedCMSSW = True
 config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
-config.JobType.outputFiles = ['LHETuple.root']
+#config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'
 config.Data.splitting = 'EventBased'

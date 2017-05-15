@@ -14,7 +14,7 @@ config.JobType.pluginName = 'PrivateMC'
 config.JobType.psetName = 'pythonLHEGEN_cfg.py'
 config.JobType.inputFiles = ['GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh', 'gridpack.tgz']
 #config.JobType.allowUndistributedCMSSW = True
-#33333333config.JobType.scriptExe = 'kappaWorkflow_privateMiniAOD.sh'
+config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD.sh'
 #config.JobType.outputFiles = ['LHETuple.root']
 
 config.Data.outputPrimaryDataset = 'MinBias'
@@ -24,7 +24,8 @@ config.Data.unitsPerJob = 10
 config.Data.totalUnits = #NUMBEREVENTS#
 #config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 config.Data.outLFNDirBase = '/store/user/%s/' % (getUsernameFromSiteDB())
-config.Data.publication = False
+#config.Data.publication = False
+config.Data.publication = True
 config.Data.outputDatasetTag = 'CRAB3_tutorial_May2015_MC_analysis_3_winputfiles'
 
-config.Site.storageSite = "T2_DE_DESY"
+config.Site.storageSite = "T2_DE_RWTH"
