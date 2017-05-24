@@ -28,6 +28,7 @@ config.Data.totalUnits = #NUMBEREVENTS#
 config.Data.outLFNDirBase = '/store/user/%s/' % (getUsernameFromSiteDB())
 #config.Data.publication = False
 config.Data.publication = True
+config.Data.publishDBS = 'global'
 config.Data.outputDatasetTag = 'CRAB3_tutorial_May2015_MC_analysis_3_winputfiles'
 
 config.Site.storageSite = "T2_DE_RWTH"
