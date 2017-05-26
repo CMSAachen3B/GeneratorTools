@@ -23,7 +23,7 @@ config.Data.userInputFiles = open('../../CMSSW_7_1_20_patch2/src/CMSAachen3B/Gen
 #config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD.sh'
 #config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD_GEN.sh'
 config.JobType.scriptExe = '../../kappaWorkflow_privateMiniAOD_AOD.sh'
-#config.JobType.outputFiles = ['MiniAOD.root']
+config.JobType.outputFiles = ['MiniAOD.root']
 
 #config.Data.outputPrimaryDataset = 'MinBias'
 config.Data.splitting = 'FileBased'
