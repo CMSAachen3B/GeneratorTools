@@ -24,7 +24,8 @@ env
 #cat LHE.py
 
 echo "================= CMSRUN starting ===================="
-cmsRun -j FrameworkJobReport.xml -p PSet.py
+cmsRun -j step1.log -p pythonAOD_cfg.py
+
 
 #echo "================= PSet.py file 3 =================="
 #cat PSet.py
@@ -44,11 +45,14 @@ echo "================= STEP -AOD to MiniAOD finished ===================="
 #ls -lrth
 echo "================= CMSRUN finished ===================="
 
-cmsRun -e -j Premix_2.xml Premix_2.py || exit $? ; 
+cmsRun -e -j step2.log Premix_2.py || exit $? ; 
 echo "RUN PREMIX 2 DONE"
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------
  
 echo "DRIVER MINIAOD DONE"
-cmsRun -e -j MiniAOD.xml MiniAOD.py || exit $? ; 
+cmsRun -j FrameworkJobReport.xml PSet.py || exit $? ; 
 echo "RUN MINIAOD DONE"
 
+rm -r Premix.root
+
+rm -r Premixstep1.root
