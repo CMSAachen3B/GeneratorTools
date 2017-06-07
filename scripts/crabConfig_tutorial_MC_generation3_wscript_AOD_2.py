@@ -16,6 +16,7 @@ config.JobType.psetName = 'MiniAOD.py'
 #config.JobType.inputFiles = ['../../kappaWorkflow_privateMiniAOD_AOD.sh']
 #config.Data.userInputFiles = ['file:kappaWorkflow_privateMiniAOD_AOD.sh']
 #config.JobType.inputFiles = ['./kappaWorkflow_privateMiniAOD_AOD.sh']
+config.JobType.numCores = 4
 config.Data.userInputFiles = open('../../CMSSW_7_1_20_patch2/src/CMSAachen3B/GeneratorTools/scripts/rootfiles.txt').readlines()
 #config.Data.userInputFiles = ['/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_1.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_2.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_3.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_4.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_5.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_6.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_7.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_8.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_9.root','/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/Gensim_10.root']
 #config.Data.inputDataset = '/store/user/croote/MinBias/CRAB3_tutorial_May2015_MC_analysis_3_winputfiles/170518_164828/0000/'
@@ -28,7 +29,7 @@ config.Data.userInputFiles = open('../../CMSSW_7_1_20_patch2/src/CMSAachen3B/Gen
 config.JobType.scriptExe = './kappaWorkflow_privateMiniAOD_AOD_2.sh'
 #config.JobType.outputFiles = ['miniaod.root']
 
-config.JobType.inputFiles = ['Premix_2.py', 'pythonAOD_cfg.py', 'kappaWorkflow_privateMiniAOD_AOD_2.sh']
+config.JobType.inputFiles = ['Premix_2.py', 'pythonAOD_cfg.py', 'kappaWorkflow_privateMiniAOD_AOD_2.sh', '../../CMSSW_7_1_20_patch2/src/CMSAachen3B/GeneratorTools/scripts/pileup_files.txt']
 config.JobType.maxMemoryMB = 6000
 
 config.Data.outputPrimaryDataset = 'LFV_ZToL1L2_13TeV_madgraph_pythia8'

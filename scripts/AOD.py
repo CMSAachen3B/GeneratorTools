@@ -64,7 +64,7 @@ process.PREMIXRAWoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 process.mix.digitizers = cms.PSet(process.theDigitizersMixPreMix)
-process.mixData.input.fileNames = open('../../CMSSW_7_1_20_patch2/src/CMSAachen3B/GeneratorTools/scripts/pileup_files.txt').readlines()
+process.mixData.input.fileNames = open('./pileup_files.txt').readlines()
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '80X_mcRun2_asymptotic_2016_TrancheIV_v6', '')
 

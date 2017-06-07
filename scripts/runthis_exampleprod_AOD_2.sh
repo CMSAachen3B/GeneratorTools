@@ -55,6 +55,8 @@ cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/r
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
+cp $STARTDIR/MiniAOD.py ./
+cp $STARTDIR/Premix_2.py ./
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_AOD.sh > ./AODscript_eventsInserted.sh
 cp $STARTDIR/kappaWorkflow_privateMiniAOD_AOD_2.sh ./
 #sed -e "s/#STARTDIR#/${STARTDIR}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
@@ -77,7 +79,7 @@ if [ $USECRAB = "True" ]; then
 	echo "Change number of events in crab config to"
 	echo $NUMBEREVENTS
 	echo " and copy crabconfig.py to workdir"
-	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3_wscript_AOD_3.py > ./crabconfig_eventsInserted.py
+	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3_wscript_AOD_2.py > ./crabconfig_eventsInserted.py
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
