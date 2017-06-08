@@ -9,7 +9,7 @@ config.General.transferLogs = True
 
 config.User.voGroup = 'dcms'
 
-config.JobType.pluginName = 'BasicJobType'
+config.JobType.pluginName = 'Analysis'
 #config.JobType.inputFiles = ['run_generic_tarball_cvmfs.sh','ppTOzTOleplfv_tarball.tgz']
 config.JobType.psetName = 'pythonAOD_cfg.py'
 #config.JobType.inputFiles = ['../../kappaWorkflow_privateMiniAOD_AOD.sh']
