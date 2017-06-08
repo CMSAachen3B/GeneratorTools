@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define number of events
-export NUMBEREVENTS= -1
+export NUMBEREVENTS=100000
 
 # Define workdir
 export WORKDIR="/home/home2/institut_3b/croote/Documents/analysis/"
@@ -51,10 +51,12 @@ cp $STARTDIR/kappaWorkflow_privateMiniAOD_AOD.sh $WORKDIR/
 echo "Copy run script to workdir"
 mkdir -p GeneratorInterface/LHEInterface/data/
 cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
+cp $STARTDIR/pileup_files.txt ./
 
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
+sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_AOD.sh > ./AODscript_eventsInserted.sh
 #sed -e "s/#STARTDIR#/${STARTDIR}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
 
