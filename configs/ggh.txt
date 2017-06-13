@@ -12,5 +12,8 @@ generate j j > X0 j j
 
 output standalone $MADGRAPH_DIR/JJ_X0JJ
 
+generate j j > X0 j j j
+
+output standalone $MADGRAPH_DIR/JJ_X0JJJ
 
 quit
