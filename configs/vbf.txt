@@ -1,0 +1,14 @@
+import HC_UFO
+
+define v = w+ w- z
+define j = g u c d s b u~ c~ d~ s~ b~
+
+generate j j > X0 j j QCD=0 QED=99 QNP=0             
+
+output standalone $MADGRAPH_DIR/data_vbf/JJ_X0JJ
+
+generate j j > X0 j j j QCD=1 QED=99 QNP=0
+ 
+output standalone $MADGRAPH_DIR/data_vbf/JJ_X0JJJ
+
+quit
