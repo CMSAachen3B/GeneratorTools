@@ -1,15 +1,17 @@
 #!/bin/bash
 
 # Define number of events
-export NUMBEREVENTS= 100000
+export NUMBEREVENTS=100000
+
+export STARTDIR=`pwd`
 
 # Define workdir
-export WORKDIR=`$CMSSW_BASE/../`
+export WORKDIR=$CMSSW_BASE/../
 
 # Define dataset location, warning if you are using crab, requires global accessible dataset
 # If running locally you can also set a local location
 #export LHELOC=$WORKDIR/LHE.root
-export LHELOC='/MinBias/croote-CRAB3_tutorial_May2015_MC_analysis_3_winputfiles-cc8a7e5394800ee601e23fd8c9aa6a3c/USER'
+export LHELOC=/LFV_ZToL1L2_13TeV_madgraph_pythia8/croote-RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016-43949d63010689f6d38e8c4acbfaa4f8/USER
 
 # Use crab for grid submitting, adjust crabconfig.py accordingly beforehand
 export USECRAB="True"
@@ -18,7 +20,6 @@ export USECRAB="True"
 ######### Do not change anything behind this line ###############
 
 
-export STARTDIR=`pwd`
 echo "Start dir was:"
 echo $STARTDIR
 
@@ -47,12 +48,13 @@ echo "Change number of events in python config to"
 echo $NUMBEREVENTS
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_GENSIM_PSet.py > ./pythonGENSIM_cfg_eventsInserted.py
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
+cp $STARTDIR/lfv_LHEGENSIMsubmissionScript.sh ./
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"
 
 	echo "Add dataset location to python config and copy cmssw python config to workdir"
-	sed -e "s~#DATASETLOC#~${LHELOC}~g" ./pythonGENSIM_cfg_eventsInserted.py > ./pythonGENSIM_cfg.py
+	sed -e "s~#LHELOCATION#~${LHELOC}~g" ./pythonGENSIM_cfg_eventsInserted.py > ./pythonGENSIM_cfg.py
 
 	echo "Scram b and start of LHEGEN production"
 	scram b -j 4
@@ -68,12 +70,16 @@ if [ $USECRAB = "True" ]; then
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
 	#export BASENAMEREPLACE=$(basename ${LHELOC%.*})
-	#sed -e "s/#BASENAME#/${BASENAMEREPLACE}/g" ./crabconfig_UserInserted.py > ./crabconfig.py
+	sed -e "s~#BASENAME#~${LHELOC}~g" ./crabconfig_UserInserted.py > ./crabconfig.py
 	
+	#sed -e  "s~#DATASETLOC#~${LHELOC}~g" ./crabconfig_UserInserted.py > ./crabconfig.py
 
         echo "Scram b and start of LHEGEN production"
         scram b -j 4
 
+	#echo "aaaaaaay"
+	#pwd
+	
 	echo "Submit crab jobs"
 	crab submit crabconfig.py
 
@@ -86,7 +92,9 @@ else
 
 	echo "Add gridpack location to python config and copy cmssw python config to workdir"
 	export LHEWORKDIR=`pwd`
-	sed -e "s~#LHELOCATION#~${LHEWORKDIR}/LHE.root~g" ./pythonGENSIM_cfg_eventsInserted.py > ./pythonGENSIM_cfg.py
+	sed -e "s~#LHELOCATION#~file:${LHEWORKDIR}/LHE.root~g" ./pythonGENSIM_cfg_eventsInserted.py > ./pythonGENSIM_cfg.py
+
+	echo $LHEWORKDIR
 
 	echo "Scram b and start of LHEGEN production"
 	scram b -j 4

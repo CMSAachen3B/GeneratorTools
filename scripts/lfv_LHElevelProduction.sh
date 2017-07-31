@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Define number of events
-export NUMBEREVENTS=500000
+export NUMBEREVENTS=100000
 
 export STARTDIR=`pwd`
 
 # Define workdir
-export WORKDIR=$CMSSW_BASE/../../
+export WORKDIR=$CMSSW_BASE/../../../
 
 # Define gridpack location, warning if you are using crab, requires global accessible gridpack
 # If running locally you can also set a local gridpack location
 #export GRIDPACKLOC='https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz'
-export GRIDPACKLOC=$STARTDIR/../data/ppTOzTOlep+lep-lfv_new_tarball.tar.xz
+export GRIDPACKLOC=$STARTDIR/../data/ppTOzTOlep+lep-LFV_slc6_amd64_gcc481_CMSSW_7_1_28_tarball.tar.xz
 #wget https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz
 #mv ppTOzTOlep+lep-lfv_tarball.tar.xz gridpack.tgz
  #export GRIDPACKLOC=/afs/cern.ch/work/m/mharrend/public/ttHtranche3/TTTo2L2Nu_hvq_ttHtranche3.tgz
@@ -98,6 +98,9 @@ else
 
 	echo "Scram b and start of LHE production"
 	scram b -j 4
+
+	#chmod 777 ./pythonLHE_cfg.py
+	#chmod 777 ./GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
 
 	cmsRun pythonLHE_cfg.py
 
