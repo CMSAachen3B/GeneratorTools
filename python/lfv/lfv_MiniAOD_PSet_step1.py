@@ -64,7 +64,11 @@ process.PREMIXRAWoutput = cms.OutputModule("PoolOutputModule",
 
 # Other statements
 process.mix.digitizers = cms.PSet(process.theDigitizersMixPreMix)
+<<<<<<< HEAD:python/lfv/lfv_MiniAOD_PSet_step1.py
 process.mixData.input.fileNames = open('./pileup_files2.txt').readlines()
+=======
+process.mixData.input.fileNames = open('./pileup_files.txt').readlines()
+>>>>>>> origin/master:scripts/AOD.py
 from Configuration.AlCa.GlobalTag import GlobalTag
 process.GlobalTag = GlobalTag(process.GlobalTag, '80X_mcRun2_asymptotic_2016_TrancheIV_v6', '')
 

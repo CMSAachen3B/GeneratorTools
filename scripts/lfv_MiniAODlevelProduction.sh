@@ -58,6 +58,7 @@ cp $STARTDIR/pileup_files2.txt ./pileup_files2.txt
 
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
+<<<<<<< HEAD:scripts/lfv_MiniAODlevelProduction.sh
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step1.py > ./lfv_MiniAOD_PSet_step1_events.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step2.py > ./lfv_MiniAOD_PSet_step2.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step3.py > ./lfv_MiniAOD_PSet_step3.py
@@ -65,6 +66,13 @@ sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/lfv_MiniAODsubmissionScript2.sh > ./AODscript_eventsInserted.sh
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step1.py > ./pythonAOD_cfg_eventsInserted.py
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/lfv_MiniAODsubmissionScript.sh > ./AODscript_eventsInserted.sh
+=======
+sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
+cp $STARTDIR/MiniAOD.py ./
+cp $STARTDIR/Premix_2.py ./
+#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_AOD.sh > ./AODscript_eventsInserted.sh
+cp $STARTDIR/kappaWorkflow_privateMiniAOD_AOD_2.sh ./
+>>>>>>> origin/master:scripts/runthis_exampleprod_AOD_2.sh
 #sed -e "s/#STARTDIR#/${STARTDIR}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
 #sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
 
@@ -86,7 +94,11 @@ if [ $USECRAB = "True" ]; then
 	echo "Change number of events in crab config to"
 	echo $NUMBEREVENTS
 	echo " and copy crabconfig.py to workdir"
+<<<<<<< HEAD:scripts/lfv_MiniAODlevelProduction.sh
 	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAODcrabConfig.py > ./crabconfig_eventsInserted.py
+=======
+	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3_wscript_AOD_2.py > ./crabconfig_eventsInserted.py
+>>>>>>> origin/master:scripts/runthis_exampleprod_AOD_2.sh
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
