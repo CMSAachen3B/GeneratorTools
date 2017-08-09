@@ -3,6 +3,7 @@
 # Define number of events
 export NUMBEREVENTS=100000
 
+# Do not edit this
 export STARTDIR=`pwd`
 
 # Define workdir
@@ -10,15 +11,11 @@ export WORKDIR=$CMSSW_BASE/../../../
 
 # Define gridpack location, warning if you are using crab, requires global accessible gridpack
 # If running locally you can also set a local gridpack location
-#export GRIDPACKLOC='https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz'
 export GRIDPACKLOC=$STARTDIR/../data/ppTOzTOlep+lep-LFV_slc6_amd64_gcc481_CMSSW_7_1_28_tarball.tar.xz
-#wget https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz
-#mv ppTOzTOlep+lep-lfv_tarball.tar.xz gridpack.tgz
- #export GRIDPACKLOC=/afs/cern.ch/work/m/mharrend/public/ttHtranche3/TTTo2L2Nu_hvq_ttHtranche3.tgz
 
 # Use crab for grid submitting, adjust crabconfig.py accordingly beforehand
-export USECRAB="True"
-#export USECRAB="False"
+#export USECRAB="True"
+export USECRAB="False"
 
 ######### Do not change anything behind this line ###############
 
@@ -51,8 +48,11 @@ cp $STARTDIR/lfv_LHEGENSIMsubmissionScript.sh ./
 
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_LHE_PSet.py
+ls -la ./
+mv ./lfv_LHE_PSet.py $STARTDIR/../python/lfv/lfv_LHE_PSet.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_LHE_PSet.py > ./pythonLHE_cfg_eventsInserted.py
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
+rm -r $STARTDIR/../python/lfv/lfv_LHE_PSet.py
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"
@@ -71,7 +71,10 @@ if [ $USECRAB = "True" ]; then
 	echo "Change number of events in crab config to"
 	echo $NUMBEREVENTS
 	echo " and copy crabconfig.py to workdir"
+	wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_LHEcrabConfig.py 
+	mv ./lfv_LHEcrabConfig.py $STARTDIR/../python/lfv/
 	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_LHEcrabConfig.py > ./crabconfig_eventsInserted.py
+	rm -r $STARTDIR/../python/lfv/lfv_LHEcrabConfig.py
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
@@ -98,9 +101,6 @@ else
 
 	echo "Scram b and start of LHE production"
 	scram b -j 4
-
-	#chmod 777 ./pythonLHE_cfg.py
-	#chmod 777 ./GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
 
 	cmsRun pythonLHE_cfg.py
 

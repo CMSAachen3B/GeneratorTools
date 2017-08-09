@@ -3,22 +3,19 @@
 # Define number of events
 export NUMBEREVENTS=100000
 
+# Do not edit this
 export STARTDIR=`pwd`
 
 # Define workdir
 export WORKDIR=$CMSSW_BASE/../
 
-# Define gridpack location, warning if you are using crab, requires global accessible gridpack
-# If running locally you can also set a local gridpack location
-#export GRIDPACKLOC='https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz'
+# Define dataset location, warning if you are using crab, requires global accessible dataset
+# If running locally you can also set a local dataset location
 export GENSIMLOC=/LFV_ZToL1L2_13TeV_madgraph_pythia8/croote-CRAB3_tutorial_May2015_MC_analysis_3_winputfiles-2480552d3a4cb91ebeaa106488712ec9/USER
-#wget https://github.com/CMSAachen3B/GeneratorTools/raw/master/data/ppTOzTOlep%2Blep-lfv_tarball.tar.xz
-#mv ppTOzTOlep+lep-lfv_tarball.tar.xz gridpack.tgz
- #export GRIDPACKLOC=/afs/cern.ch/work/m/mharrend/public/ttHtranche3/TTTo2L2Nu_hvq_ttHtranche3.tgz
 
 # Use crab for grid submitting, adjust crabconfig.py accordingly beforehand
-export USECRAB="True"
-#export USECRAB="False"
+#export USECRAB="True"
+export USECRAB="False"
 
 ######### Do not change anything behind this line ###############
 
@@ -53,35 +50,32 @@ echo "Copy run script to workdir"
 mkdir -p GeneratorInterface/LHEInterface/data/
 cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
 cp $STARTDIR/pileup_files2.txt ./pileup_files2.txt
-#cp $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step2.py ./
-#cp $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step3.py ./
+
 
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
-<<<<<<< HEAD:scripts/lfv_MiniAODlevelProduction.sh
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_MiniAOD_PSet_step1.py
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_MiniAOD_PSet_step2.py
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_MiniAOD_PSet_step3.py
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_MiniAOD_PSet_Dummy.py
+mv ./lfv_MiniAOD_PSet_step1.py $STARTDIR/../python/lfv/
+mv ./lfv_MiniAOD_PSet_step2.py $STARTDIR/../python/lfv/
+mv ./lfv_MiniAOD_PSet_step3.py $STARTDIR/../python/lfv/
+mv ./lfv_MiniAOD_PSet_Dummy.py $STARTDIR/../python/lfv/
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step1.py > ./lfv_MiniAOD_PSet_step1_events.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step2.py > ./lfv_MiniAOD_PSet_step2.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step3.py > ./lfv_MiniAOD_PSet_step3.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_Dummy.py > ./pythonAOD_cfg_eventsInserted.py
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/lfv_MiniAODsubmissionScript2.sh > ./AODscript_eventsInserted.sh
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step1.py > ./pythonAOD_cfg_eventsInserted.py
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/lfv_MiniAODsubmissionScript.sh > ./AODscript_eventsInserted.sh
-=======
-sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
-cp $STARTDIR/MiniAOD.py ./
-cp $STARTDIR/Premix_2.py ./
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_AOD.sh > ./AODscript_eventsInserted.sh
-cp $STARTDIR/kappaWorkflow_privateMiniAOD_AOD_2.sh ./
->>>>>>> origin/master:scripts/runthis_exampleprod_AOD_2.sh
-#sed -e "s/#STARTDIR#/${STARTDIR}/g" $STARTDIR/AOD.py > ./pythonAOD_cfg_eventsInserted.py
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
+rm -r $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step1.py
+rm -r $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step2.py
+rm -r $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_step3.py
+rm -r $STARTDIR/../python/lfv/lfv_MiniAOD_PSet_Dummy.py
 
 if [ $USECRAB = "True" ]; then
 	echo "Will use crab submission, adjust crabconfig.py accordingly if problems arise"
 
-        echo "Copy gridpack for production to workdir, so that crab can transfer it also"
-        #cp $GENSIMLOC GENSIM.root
-	#echo "Add gridpack location to python config and copy cmssw python config to workdir"
+	echo "Add dataset location to python config and copy cmssw python config to workdir"
 	sed -e "s~#GENSIMLOCATION#~${GENSIMLOC}~g" ./pythonAOD_cfg_eventsInserted.py > ./pythonAOD_cfg.py
 	sed -e "s~#GENSIMLOCATION#~${GENSIMLOC}/~g" ./lfv_MiniAOD_PSet_step1_events.py > ./lfv_MiniAOD_PSet_step1.py
 
@@ -94,16 +88,10 @@ if [ $USECRAB = "True" ]; then
 	echo "Change number of events in crab config to"
 	echo $NUMBEREVENTS
 	echo " and copy crabconfig.py to workdir"
-<<<<<<< HEAD:scripts/lfv_MiniAODlevelProduction.sh
 	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_MiniAODcrabConfig.py > ./crabconfig_eventsInserted.py
-=======
-	sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/crabConfig_tutorial_MC_generation3_wscript_AOD_2.py > ./crabconfig_eventsInserted.py
->>>>>>> origin/master:scripts/runthis_exampleprod_AOD_2.sh
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
-	#export BASENAMEREPLACE=$(basename ${GENSIMLOC%.*})
-	#sed -e "s/#BASENAME#/${BASENAMEREPLACE}/g" ./crabconfig_UserInserted.py > ./crabconfig.py
 	sed -e "s~#BASENAME#~${GENSIMLOC}~g" ./crabconfig_UserInserted.py > ./crabconfig.py
 	
 

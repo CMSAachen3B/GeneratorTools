@@ -25,11 +25,7 @@ config.JobType.scriptExe = './AODscript_eventsInserted.sh'
 config.JobType.outputFiles = ['MiniAOD.root']
 config.JobType.disableAutomaticOutputCollection = True
 
-<<<<<<< HEAD:python/lfv/lfv_MiniAODcrabConfig.py
 #config.Data.outputPrimaryDataset = 'LFV_ZToL1L2_13TeV_madgraph_pythia8'
-=======
-config.Data.outputPrimaryDataset = 'LFV_ZToL1L2_13TeV_madgraph_pythia8'
->>>>>>> origin/master:scripts/crabConfig_tutorial_MC_generation3_wscript_AOD.py
 config.Data.splitting = 'FileBased'
 config.Data.unitsPerJob = 1
 #NJOBS = 10  # This is not a configuration parameter, but an auxiliary variable that we use in the next line.

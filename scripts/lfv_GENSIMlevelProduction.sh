@@ -3,6 +3,7 @@
 # Define number of events
 export NUMBEREVENTS=100000
 
+# Do not edit this
 export STARTDIR=`pwd`
 
 # Define workdir
@@ -14,8 +15,8 @@ export WORKDIR=$CMSSW_BASE/../
 export LHELOC=/LFV_ZToL1L2_13TeV_madgraph_pythia8/croote-RunIISummer16MiniAODv2-PUMoriond17_80X_mcRun2_asymptotic_2016-43949d63010689f6d38e8c4acbfaa4f8/USER
 
 # Use crab for grid submitting, adjust crabconfig.py accordingly beforehand
-export USECRAB="True"
-#export USECRAB="False"
+#export USECRAB="True"
+export USECRAB="False"
 
 ######### Do not change anything behind this line ###############
 
@@ -40,14 +41,12 @@ cd CMSSW_7_1_20_patch3/src
 eval `scram runtime -sh`
 echo "Loaded CMSSW_7_1_20"
 
-#echo "Copy run script to workdir"
-#mkdir -p GeneratorInterface/LHEInterface/data/
-#cp $STARTDIR/run_generic_tarball_cvmfs.sh GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh
-
 echo "Change number of events in python config to"
 echo $NUMBEREVENTS
+wget https://raw.githubusercontent.com/TomCroote/lfvgenprod/master/lfv/lfv_GENSIM_PSet.py
+mv lfv_GENSIM_PSet.py $STARTDIR/../python/lfv/
 sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/../python/lfv/lfv_GENSIM_PSet.py > ./pythonGENSIM_cfg_eventsInserted.py
-#sed -e "s/#NUMBEREVENTS#/${NUMBEREVENTS}/g" $STARTDIR/kappaWorkflow_privateMiniAOD_GEN.sh
+rm -r $STARTDIR/../python/lfv/lfv_GENSIM_PSet.py
 cp $STARTDIR/lfv_LHEGENSIMsubmissionScript.sh ./
 
 if [ $USECRAB = "True" ]; then
@@ -56,7 +55,7 @@ if [ $USECRAB = "True" ]; then
 	echo "Add dataset location to python config and copy cmssw python config to workdir"
 	sed -e "s~#LHELOCATION#~${LHELOC}~g" ./pythonGENSIM_cfg_eventsInserted.py > ./pythonGENSIM_cfg.py
 
-	echo "Scram b and start of LHEGEN production"
+	echo "Scram b and start of GENSIM production"
 	scram b -j 4
 	
 	echo "Load crab environment, grid environment should be loaded manually in advance if necessary"
@@ -69,16 +68,10 @@ if [ $USECRAB = "True" ]; then
 	sed -e "s/#REQUESTDATE#/`date  +'%Y%m%d%H%m%s'`/g" ./crabconfig_eventsInserted.py > ./crabconfig_dateInserted.py
 	sed -e "s/#WHOAMI#/`whoami`/g" ./crabconfig_dateInserted.py > ./crabconfig_UserInserted.py
 
-	#export BASENAMEREPLACE=$(basename ${LHELOC%.*})
 	sed -e "s~#BASENAME#~${LHELOC}~g" ./crabconfig_UserInserted.py > ./crabconfig.py
-	
-	#sed -e  "s~#DATASETLOC#~${LHELOC}~g" ./crabconfig_UserInserted.py > ./crabconfig.py
 
-        echo "Scram b and start of LHEGEN production"
+        echo "Scram b and start of GENSIM production"
         scram b -j 4
-
-	#echo "aaaaaaay"
-	#pwd
 	
 	echo "Submit crab jobs"
 	crab submit crabconfig.py
@@ -96,7 +89,7 @@ else
 
 	echo $LHEWORKDIR
 
-	echo "Scram b and start of LHEGEN production"
+	echo "Scram b and start of GENSIM production"
 	scram b -j 4
 
 	cmsRun pythonGENSIM_cfg.py
