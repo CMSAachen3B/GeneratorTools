@@ -1,0 +1,11 @@
+import model HC_NLO_X0_UFO
+
+generate p p > x0 j j $$ w+ w- z / a [QCD]
+
+output $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/JJ_X0JJ
+
+generate p p > x0 j j j $$ w+ w- z / a [QCD]
+
+output $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/JJ_X0JJJ
+
+quit
