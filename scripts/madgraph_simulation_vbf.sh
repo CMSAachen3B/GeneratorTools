@@ -1,43 +1,21 @@
 #!/bin/bash
 
-if [ -z ${CMSSW_BASE+x} ]; then
-
-	$MADGRAPH_DIR/bin/mg5_aMC $GENERATOR_TOOLS/configs/vbf.txt
-
-	chmod u+x $MADGRAPH_DIR/data_vbf/JJ_X0JJ/SubProcesses/makefile
-
-	sed -i -e "s@\(F2PY.*\)\$@\1 --fcompiler=gnu95@g" $MADGRAPH_DIR/data_vbf/JJ_X0JJ/SubProcesses/makefile
-
-	echo "hallo"
-	for makefile in $MADGRAPH_DIR/data_vbf/JJ_X0JJ/SubProcesses/P*/makefile;
-	do
-	        echo `dirname $makefile`
-	        echo "before"
-	        cd `dirname $makefile`
-	        echo "hi"
-	        pwd
-	        echo "here starts matrix2py"
-	        make matrix2py.so
-	        #|| (echo "Compilation failed"; exit)
-	done
-
-	chmod u+x $MADGRAPH_DIR/data_vbf/JJ_X0JJJ/SubProcesses/makefile
-
-	sed -i -e "s@\(F2PY.*\)\$@\1 --fcompiler=gnu95@g" $MADGRAPH_DIR/data_vbf/JJ_X0JJJ/SubProcesses/makefile
-
-	echo "hallo"
-	for makefile in $MADGRAPH_DIR/data_vbf/JJ_X0JJJ/SubProcesses/P*/makefile;
-	do
-	        echo `dirname $makefile`
-	        echo "before"
-	        cd `dirname $makefile`
-	        echo "hi"
-	        pwd
-	        echo "here starts matrix2py"
-	        make matrix2py.so
-	        #|| (echo "Compilation failed"; exit)
-
-	done
-
-else echo "To execute this script you must open a new terminal and not run 'setkitanalysis'!"
+if [ ! -d $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf ]
+then
+	mkdir -p $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf
 fi
+rm -rf $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/*
+
+$CMSSW_BASE/src/CMSAachen3B/GeneratorTools/MG5_aMC_v2_5_5/bin/mg5_aMC $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/configs/vbf.txt
+
+sed -i -e "s@^\(LINKLIBS.*=.*\)\$@\1 -L\$(CMSSW_RELEASE_BASE)/external/\$(SCRAM_ARCH)/lib/@g" $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/*/SubProcesses/makefile
+sed -i -e "s@\(F2PY.*\)\$@\1 --fcompiler=gnu95@g" $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/*/SubProcesses/makefile
+
+for MAKEFILE in $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf/*/SubProcesses/P*/makefile;
+do
+	echo -e "\e[92mStart compiling makefile \"$MAKEFILE\"\e[0m"
+	cd `dirname $MAKEFILE`
+	make matrix2py.so && echo -e "\e[42mSuccessfully compiled makefile \"$MAKEFILE\".\e[0m" || echo -e "\e[41mFailed to compile makefile \"$MAKEFILE\"!\e[0m"
+	echo ""
+done
+
