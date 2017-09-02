@@ -2,19 +2,19 @@ import model HC_UFO
 
 define j = g u c d s b u~ c~ d~ s~ b~
 
-generate j j > X0
+generate j j > X0 / t
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh/JJ_X0
 
-generate j j > X0 j
+generate j j > X0 j / t
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh/JJ_X0J
 
-generate j j > X0 j j
+generate j j > X0 j j / t
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh/JJ_X0JJ
 
-generate j j > X0 j j j
+generate j j > X0 j j j / t
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh/JJ_X0JJJ
 
