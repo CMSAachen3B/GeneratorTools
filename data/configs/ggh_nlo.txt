@@ -1,4 +1,4 @@
-import model HC_NLO_X0_UFO
+import model HC_NLO_X0_UFO-heft
 
 generate p p > x0 / t [QCD]
 
