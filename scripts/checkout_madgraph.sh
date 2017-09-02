@@ -12,10 +12,6 @@ wget feynrules.irmp.ucl.ac.be/raw-attachment/wiki/HiggsCharacterisation/HC_NLO_X
 unzip HC_NLO_X0_UFO.zip -d `pwd`/MG5_aMC_v2_5_5/models
 rm HC_NLO_X0_UFO.zip
 
-wget feynrules.irmp.ucl.ac.be/raw-attachment/wiki/HiggsCharacterisation/HC_NLO_X0_UFO.zip
-unzip HC_NLO_X0_UFO.zip -d `pwd`/MG5_aMC_v2_5_5/models
-rm HC_NLO_X0_UFO.zip
-
 export PATH=`pwd`/MG5_aMC_v2_5_5/bin:$PATH
 
 export MADGRAPH_DIR=`pwd`/MG5_aMC_v2_5_5
