@@ -1,18 +1,18 @@
 import model HC_NLO_X0_UFO-heft
 
-generate p p > x0 / t [QCD]
+generate p p > x0 / t [virt=QCD]
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh_nlo/JJ_X0
 
-generate p p > x0 j / t [QCD]
+generate p p > x0 j / t [virt=QCD]
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh_nlo/JJ_X0J
 
-generate p p > x0 j j / t [QCD]
+generate p p > x0 j j / t [virt=QCD]
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh_nlo/JJ_X0JJ
 
-generate p p > x0 j j j / t [QCD]
+generate p p > x0 j j j / t [virt=QCD]
 
 output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh_nlo/JJ_X0JJJ
 
