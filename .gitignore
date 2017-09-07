@@ -3,3 +3,5 @@ data/ggh
 data/ggh_nlo
 data/vbf
 data/vbf_nlo
+__init__.py
+*.pyc
