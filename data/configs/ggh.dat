@@ -1,5 +1,6 @@
 import model HC_NLO_X0_UFO-heft
 
+define p = g u c d s b u~ c~ d~ s~ b~
 define j = g u c d s b u~ c~ d~ s~ b~
 
 generate p p > X0 / t @0
