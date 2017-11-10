@@ -16,7 +16,7 @@
 Block frblock 
     1 1.000000e+03 # Lambda 
     2 $cosa # cosa
-    3 0.000000e+00 # kSM 
+    3 1.000000e+00 # kSM 
     4 0.000000e+00 # kHtt 
     5 0.000000e+00 # kAtt 
     8 0.000000e+00 # kHll 
