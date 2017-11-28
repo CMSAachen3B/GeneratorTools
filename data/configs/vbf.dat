@@ -6,6 +6,6 @@ define j = g u c d s b u~ c~ d~ s~ b~
 generate p p > x0 j j $$ w+ w- z / a @0
 add process p p > x0 j j j $$ w+ w- z / a @1
 
-output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf
+output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/vbf --prefix=int
 
 quit

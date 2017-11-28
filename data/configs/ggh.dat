@@ -8,6 +8,6 @@ add process p p > X0 j / t @1
 add process p p > X0 j j / t @2
 add process p p > X0 j j j / t @3
 
-output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh
+output standalone $CMSSW_BASE/src/CMSAachen3B/GeneratorTools/data/ggh --prefix=int
 
 quit
